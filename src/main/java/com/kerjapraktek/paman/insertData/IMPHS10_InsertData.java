@@ -1,6 +1,6 @@
 package com.kerjapraktek.paman.insertData;
 
-import com.kerjapraktek.paman.entity.EKSPOR2017;
+import com.kerjapraktek.paman.entity.IMPHS10;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -15,9 +15,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class EKSPOR2017_InsertData {
-    static final String URL_CREATE_EMPLOYEE = "http://localhost:8080/EKSPOR2017/add";
-    public EKSPOR2017_InsertData() {
+public class IMPHS10_InsertData {
+    static final String URL_CREATE_EMPLOYEE = "http://localhost:8080/IMPHS10/add";
+    public IMPHS10_InsertData() {
 
     }
 
@@ -46,21 +46,20 @@ public class EKSPOR2017_InsertData {
 
             //Create a loop to print cell values in a row
 
-            EKSPOR2017 add = new EKSPOR2017();
+            IMPHS10 add = new IMPHS10();
             add.setTAHUN(row.getCell(0).getStringCellValue());
-            add.setBLN_PROSES(row.getCell(1).getStringCellValue());
-            add.setTHN_PROSES(row.getCell(2).getStringCellValue());
-            add.setNGR_TUJUAN(row.getCell(3).getStringCellValue());
-            add.setHS2017(row.getCell(4).getStringCellValue());
+            add.setPODALTCODE(row.getCell(1).getStringCellValue());
+            add.setHSXCODE(row.getCell(2).getStringCellValue());
+            add.setSITCCODE(row.getCell(3).getStringCellValue());
+            add.setCTRYORIG(row.getCell(4).getStringCellValue());
             add.setNETWTHS(Double.parseDouble(NumberToTextConverter.toText(row.getCell(5).getNumericCellValue())));
-            add.setFOBHSUSD(Double.parseDouble(NumberToTextConverter.toText(row.getCell(6).getNumericCellValue())));
+            add.setCIFHSUSD(Double.parseDouble(NumberToTextConverter.toText(row.getCell(6).getNumericCellValue())));
             add.setOLDCTRYCOD(row.getCell(7).getStringCellValue());
-            add.setPODALTCODE(row.getCell(8).getStringCellValue());
             System.out.println(i);
-            HttpEntity<EKSPOR2017> requestBody = new HttpEntity<>(add, headers);
+            HttpEntity<IMPHS10> requestBody = new HttpEntity<>(add, headers);
 
             // Send request with POST method.
-            EKSPOR2017 ekspor2017 = restTemplate.postForObject(URL_CREATE_EMPLOYEE, requestBody, EKSPOR2017.class);
+            IMPHS10 imphs10 = restTemplate.postForObject(URL_CREATE_EMPLOYEE, requestBody, IMPHS10.class);
         }
     }
 
@@ -68,7 +67,7 @@ public class EKSPOR2017_InsertData {
 
         //Create an object of ReadGuru99ExcelFile class
 
-        EKSPOR2017_InsertData objExcelFile = new EKSPOR2017_InsertData();
+        IMPHS10_InsertData objExcelFile = new IMPHS10_InsertData();
 
         //Prepare the path of excel file
 
@@ -76,7 +75,7 @@ public class EKSPOR2017_InsertData {
 
         //Call read file method of the class to read data
 
-        objExcelFile.readExcel(filePath,"dbo_EKSPOR2017.xls","dbo_EKSPOR2017");
+        objExcelFile.readExcel(filePath,"dbo_IMPHS10.xls","dbo_IMPHS10");
 
     }
 }

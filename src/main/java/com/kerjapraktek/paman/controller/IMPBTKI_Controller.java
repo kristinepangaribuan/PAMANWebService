@@ -21,9 +21,6 @@ public class IMPBTKI_Controller {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public void addIMPBTKI(@RequestBody IMPBTKI impbtki){
         IMPBTKI add = new IMPBTKI();
-        add.setId(impbtki.getId());
-        add.setGAB(impbtki.getGAB());
-        add.setKD(impbtki.getKD());
         add.setPODALTCODE(impbtki.getPODALTCODE());
         add.setOLDCTRYCOD(impbtki.getOLDCTRYCOD());
         add.setHSXCODE(impbtki.getHSXCODE());
@@ -50,8 +47,6 @@ public class IMPBTKI_Controller {
     @RequestMapping(value = "/update/{Id}", method = RequestMethod.PUT)
     public IMPBTKI updateIMPBTKI (@PathVariable("Id")Integer Id, @RequestBody IMPBTKI impbtki){
         IMPBTKI update = impbtki_service.findIMPBTKIById(Id);
-        update.setGAB(impbtki.getGAB());
-        update.setKD(impbtki.getKD());
         update.setPODALTCODE(impbtki.getPODALTCODE());
         update.setOLDCTRYCOD(impbtki.getOLDCTRYCOD());
         update.setHSXCODE(impbtki.getHSXCODE());

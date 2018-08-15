@@ -1,11 +1,14 @@
 package com.kerjapraktek.paman.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Impor {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int Id;
 
     private String KD_PROP;

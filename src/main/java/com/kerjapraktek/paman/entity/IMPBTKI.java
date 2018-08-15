@@ -1,15 +1,16 @@
 package com.kerjapraktek.paman.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class IMPBTKI {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int Id;
 
-    private String GAB;
-    private String KD;
     private String PODALTCODE;
     private String OLDCTRYCOD;
     private String HSXCODE;
@@ -34,10 +35,8 @@ public class IMPBTKI {
     public IMPBTKI() {
     }
 
-    public IMPBTKI(int id, String GAB, String KD, String PODALTCODE, String OLDCTRYCOD, String HSXCODE, Double n12, Double n13, Double n14, Double n15, Double n16, Double n17, Double NLALU, Double NSEKA, Double v12, Double v13, Double v14, Double v15, Double v16, Double v17, Double VLALU, Double VSEKA, String PERIOD) {
+    public IMPBTKI(int id, String PODALTCODE, String OLDCTRYCOD, String HSXCODE, Double n12, Double n13, Double n14, Double n15, Double n16, Double n17, Double NLALU, Double NSEKA, Double v12, Double v13, Double v14, Double v15, Double v16, Double v17, Double VLALU, Double VSEKA, String PERIOD) {
         Id = id;
-        this.GAB = GAB;
-        this.KD = KD;
         this.PODALTCODE = PODALTCODE;
         this.OLDCTRYCOD = OLDCTRYCOD;
         this.HSXCODE = HSXCODE;
@@ -66,22 +65,6 @@ public class IMPBTKI {
 
     public void setId(int id) {
         Id = id;
-    }
-
-    public String getGAB() {
-        return GAB;
-    }
-
-    public void setGAB(String GAB) {
-        this.GAB = GAB;
-    }
-
-    public String getKD() {
-        return KD;
-    }
-
-    public void setKD(String KD) {
-        this.KD = KD;
     }
 
     public String getPODALTCODE() {

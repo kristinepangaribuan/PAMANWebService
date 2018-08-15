@@ -24,8 +24,8 @@ public class M2012_2017_ServiceImpl implements M2012_2017_Service {
     }
 
     @Override
-    public void deleteM2012_2017ById(String BTKI_2012) {
-        m2012_2017_repository.deleteById(BTKI_2012);
+    public void deleteM2012_2017ById(Integer Id) {
+        m2012_2017_repository.deleteById(Id);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class M2012_2017_ServiceImpl implements M2012_2017_Service {
     }
 
     @Override
-    public M2012_2017 findM2012_2017ById(String BTKI_2012) {
-        return m2012_2017_repository.getOne(BTKI_2012);
+    public M2012_2017 findM2012_2017ById(Integer Id) {
+        return m2012_2017_repository.getOne(Id);
     }
 }

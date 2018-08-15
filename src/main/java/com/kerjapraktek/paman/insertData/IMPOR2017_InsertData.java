@@ -1,6 +1,6 @@
 package com.kerjapraktek.paman.insertData;
 
-import com.kerjapraktek.paman.entity.EKSPOR2017;
+import com.kerjapraktek.paman.entity.IMPOR2017;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -15,9 +15,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class EKSPOR2017_InsertData {
-    static final String URL_CREATE_EMPLOYEE = "http://localhost:8080/EKSPOR2017/add";
-    public EKSPOR2017_InsertData() {
+public class IMPOR2017_InsertData {
+    static final String URL_CREATE_EMPLOYEE = "http://localhost:8080/IMPOR2017/add";
+    public IMPOR2017_InsertData() {
 
     }
 
@@ -46,21 +46,19 @@ public class EKSPOR2017_InsertData {
 
             //Create a loop to print cell values in a row
 
-            EKSPOR2017 add = new EKSPOR2017();
+            IMPOR2017 add = new IMPOR2017();
             add.setTAHUN(row.getCell(0).getStringCellValue());
-            add.setBLN_PROSES(row.getCell(1).getStringCellValue());
-            add.setTHN_PROSES(row.getCell(2).getStringCellValue());
-            add.setNGR_TUJUAN(row.getCell(3).getStringCellValue());
-            add.setHS2017(row.getCell(4).getStringCellValue());
-            add.setNETWTHS(Double.parseDouble(NumberToTextConverter.toText(row.getCell(5).getNumericCellValue())));
-            add.setFOBHSUSD(Double.parseDouble(NumberToTextConverter.toText(row.getCell(6).getNumericCellValue())));
-            add.setOLDCTRYCOD(row.getCell(7).getStringCellValue());
-            add.setPODALTCODE(row.getCell(8).getStringCellValue());
+            add.setJENIS(row.getCell(1).getStringCellValue());
+            add.setHSXCODE(row.getCell(2).getStringCellValue());
+            add.setNETWTHS(Double.parseDouble(NumberToTextConverter.toText(row.getCell(3).getNumericCellValue())));
+            add.setCIFHSUSD(Double.parseDouble(NumberToTextConverter.toText(row.getCell(4).getNumericCellValue())));
+            add.setOLDCTRYCOD(row.getCell(5).getStringCellValue());
+            add.setPODALTCODE(row.getCell(6).getStringCellValue());
             System.out.println(i);
-            HttpEntity<EKSPOR2017> requestBody = new HttpEntity<>(add, headers);
+            HttpEntity<IMPOR2017> requestBody = new HttpEntity<>(add, headers);
 
             // Send request with POST method.
-            EKSPOR2017 ekspor2017 = restTemplate.postForObject(URL_CREATE_EMPLOYEE, requestBody, EKSPOR2017.class);
+            IMPOR2017 impor2017 = restTemplate.postForObject(URL_CREATE_EMPLOYEE, requestBody, IMPOR2017.class);
         }
     }
 
@@ -68,7 +66,7 @@ public class EKSPOR2017_InsertData {
 
         //Create an object of ReadGuru99ExcelFile class
 
-        EKSPOR2017_InsertData objExcelFile = new EKSPOR2017_InsertData();
+        IMPOR2017_InsertData objExcelFile = new IMPOR2017_InsertData();
 
         //Prepare the path of excel file
 
@@ -76,7 +74,7 @@ public class EKSPOR2017_InsertData {
 
         //Call read file method of the class to read data
 
-        objExcelFile.readExcel(filePath,"dbo_EKSPOR2017.xls","dbo_EKSPOR2017");
+        objExcelFile.readExcel(filePath,"dbo_IMPOR2017.xls","dbo_IMPOR2017");
 
     }
 }
