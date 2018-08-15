@@ -1,14 +1,16 @@
 package com.kerjapraktek.paman.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Ekspor {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int Id;
 
-    private String MIG_NON;
     private String KD_PROP;
     private String PEL;
     private String PODALTCODE;
@@ -47,14 +49,12 @@ public class Ekspor {
     private Double VP_LALU;
     private Double VP_SEKA;
     private String PERIOD;
-    private String GAB;
 
     public Ekspor() {
     }
 
-    public Ekspor(int id, String MIG_NON, String KD_PROP, String PEL, String PODALTCODE, String HS, String NEG, Double n_04, Double n_05, Double n_06, Double n_07, Double n_08, Double n_09, Double n_10, Double n_11, Double n_12, Double n_13, Double n_14, Double n_15, Double n_16, Double n_17, Double NP_LALU, Double NP_SEKA, Double v_04, Double v_05, Double v_06, Double v_07, Double v_08, Double v_09, Double v_10, Double v_11, Double v_12, Double v_13, Double v_14, Double v_15, Double v_16, Double v_17, Double VP_LALU, Double VP_SEKA, String PERIOD, String GAB) {
+    public Ekspor(int id, String KD_PROP, String PEL, String PODALTCODE, String HS, String NEG, Double n_04, Double n_05, Double n_06, Double n_07, Double n_08, Double n_09, Double n_10, Double n_11, Double n_12, Double n_13, Double n_14, Double n_15, Double n_16, Double n_17, Double NP_LALU, Double NP_SEKA, Double v_04, Double v_05, Double v_06, Double v_07, Double v_08, Double v_09, Double v_10, Double v_11, Double v_12, Double v_13, Double v_14, Double v_15, Double v_16, Double v_17, Double VP_LALU, Double VP_SEKA, String PERIOD, String GAB) {
         Id = id;
-        this.MIG_NON = MIG_NON;
         this.KD_PROP = KD_PROP;
         this.PEL = PEL;
         this.PODALTCODE = PODALTCODE;
@@ -93,7 +93,6 @@ public class Ekspor {
         this.VP_LALU = VP_LALU;
         this.VP_SEKA = VP_SEKA;
         this.PERIOD = PERIOD;
-        this.GAB = GAB;
     }
 
     public int getId() {
@@ -102,14 +101,6 @@ public class Ekspor {
 
     public void setId(int id) {
         Id = id;
-    }
-
-    public String getMIG_NON() {
-        return MIG_NON;
-    }
-
-    public void setMIG_NON(String MIG_NON) {
-        this.MIG_NON = MIG_NON;
     }
 
     public String getKD_PROP() {
@@ -414,13 +405,5 @@ public class Ekspor {
 
     public void setPERIOD(String PERIOD) {
         this.PERIOD = PERIOD;
-    }
-
-    public String getGAB() {
-        return GAB;
-    }
-
-    public void setGAB(String GAB) {
-        this.GAB = GAB;
     }
 }

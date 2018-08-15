@@ -21,8 +21,6 @@ public class Ekspor_Controller {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public void addEkspor(@RequestBody Ekspor ekspor){
         Ekspor add = new Ekspor();
-        add.setId((ekspor.getId()));
-        add.setMIG_NON(ekspor.getMIG_NON());
         add.setKD_PROP(ekspor.getKD_PROP());
         add.setPEL(ekspor.getPEL());
         add.setPODALTCODE(ekspor.getPODALTCODE());
@@ -61,14 +59,12 @@ public class Ekspor_Controller {
         add.setVP_LALU(ekspor.getVP_LALU());
         add.setVP_SEKA(ekspor.getVP_SEKA());
         add.setPERIOD(ekspor.getPERIOD());
-        add.setGAB(ekspor.getGAB());
         ekspor_service.addEkspor(add);
     }
 
     @RequestMapping(value = "/update/{Id}", method = RequestMethod.PUT)
     public Ekspor updateEksporById(@PathVariable("Id")Integer Id, @RequestBody Ekspor ekspor){
         Ekspor update = ekspor_service.findEksporById(Id);
-        update.setMIG_NON(ekspor.getMIG_NON());
         update.setKD_PROP(ekspor.getKD_PROP());
         update.setPEL(ekspor.getPEL());
         update.setPODALTCODE(ekspor.getPODALTCODE());
@@ -107,7 +103,6 @@ public class Ekspor_Controller {
         update.setVP_LALU(ekspor.getVP_LALU());
         update.setVP_SEKA(ekspor.getVP_SEKA());
         update.setPERIOD(ekspor.getPERIOD());
-        update.setGAB(ekspor.getGAB());
         return ekspor_service.updateEkspor(update);
     }
 

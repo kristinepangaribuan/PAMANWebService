@@ -22,7 +22,6 @@ public class Impor_Controller {
     public void addImpor(@RequestBody Impor impor){
         Impor add = new Impor();
         add.setId(impor.getId());
-        add.setMIG_NON(impor.getMIG_NON());
         add.setKD_PROP(impor.getKD_PROP());
         add.setPEL(impor.getPEL());
         add.setPODALTCODE(impor.getPODALTCODE());
@@ -68,7 +67,6 @@ public class Impor_Controller {
     @RequestMapping(value = "/update/{Id}", method = RequestMethod.PUT)
     public Impor updateImpor (@PathVariable("Id")Integer Id, @RequestBody Impor impor){
         Impor update = impor_service.findImporById(Id);
-        update.setMIG_NON(impor.getMIG_NON());
         update.setKD_PROP(impor.getKD_PROP());
         update.setPEL(impor.getPEL());
         update.setPODALTCODE(impor.getPODALTCODE());

@@ -1,15 +1,16 @@
-package com.kerjapraktek.paman.controller;
+package com.kerjapraktek.paman.insertData;
 
 import java.io.File;
 
 import java.io.FileInputStream;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.web.client.RestTemplate;
 import com.kerjapraktek.paman.entity.BTKI2017;
-import com.kerjapraktek.paman.repository.BTKI2017_Repository;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import org.apache.poi.ss.usermodel.Row;
@@ -18,21 +19,19 @@ import org.apache.poi.ss.usermodel.Sheet;
 
 import org.apache.poi.ss.usermodel.Workbook;
 
-import org.springframework.beans.factory.annotation.Autowired;
 public class BTKI2017_InsertData {
-    @Autowired
-    private BTKI2017_Repository btki2017_repository;
 
-    private List<BTKI2017> allListBTKI2017;
+    static final String URL_CREATE_EMPLOYEE = "http://localhost:8080/BTKI2017/add";
     public BTKI2017_InsertData() {
-        allListBTKI2017 = new ArrayList<BTKI2017>();
+
     }
 
     public void readExcel(String filePath, String fileName, String sheetName) throws IOException{
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+        RestTemplate restTemplate = new RestTemplate();
         File file =    new File(filePath+"\\"+fileName);
-
-        //Create an object of FileInputStream class to read excel file
-
         FileInputStream inputStream = new FileInputStream(file);
 
         Workbook data = null;
@@ -46,7 +45,7 @@ public class BTKI2017_InsertData {
 
         //Create a loop over all the rows of excel file to read it
 
-        for (int i = 3; i < 4; i++) {
+        for (int i = 1; i < rowCount+1; i++) {
 
             Row row = sheetData.getRow(i);
 
@@ -73,15 +72,10 @@ public class BTKI2017_InsertData {
             add.setKBLI2015(row.getCell(17).getStringCellValue());
             add.setDESKKBLI20(row.getCell(18).getStringCellValue());
             System.out.println(add.getBRSCODE().toString());
-            //btki2017_repository.save(add);
-            //allListBTKI2017.add(add);
-//            for (int j = 0; j < row.getLastCellNum(); j++) {
-//
-//                //Print Excel data in console
-//
-//                System.out.print(row.getCell(j).getStringCellValue()+"|| ");
-//
-//            }
+            HttpEntity<BTKI2017> requestBody = new HttpEntity<>(add, headers);
+
+            // Send request with POST method.
+            BTKI2017 btki2017 = restTemplate.postForObject(URL_CREATE_EMPLOYEE, requestBody, BTKI2017.class);
         }
     }
 
